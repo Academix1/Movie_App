@@ -16,7 +16,22 @@ export const searchMoviesAsync = createAsyncThunk(
       return response.data.results;
     }
   );
-
+  export const fetchGenres = createAsyncThunk(
+    'movies/fetchGenres',
+    async () => {
+      const response = await api.get('/genre/movie/list');
+      return response.data.genres;
+    }
+  );
+  
+  // Thunk to fetch movies by selected genre
+  export const fetchMoviesByGenre = createAsyncThunk(
+    'movies/fetchMoviesByGenre',
+    async (genreId) => {
+      const response = await api.get(`/discover/movie?with_genres=${genreId}`);
+      return response.data.results;
+    }
+  );
 
 export const fetchTrendingMovies = createAsyncThunk(
   'movies/fetchTrending',
@@ -34,6 +49,9 @@ const movieSlice = createSlice({
     watchlist: [],
     searchResults: [],
     loading: false,
+    genres: [],
+    selectedGenre: null,
+    genreMovies: [],
     error: null,
   },
   reducers: {
@@ -45,6 +63,13 @@ const movieSlice = createSlice({
           (movie) => movie.id !== action.payload.id
         );
         
+      },
+      setSelectedGenre: (state, action) => {
+        state.selectedGenre = action.payload;
+      },
+      clearSelectedGenre: (state) => {
+        state.selectedGenre = null;
+        state.genreMovies = [];
       },
   },
   extraReducers: (builder) => {
@@ -65,11 +90,25 @@ const movieSlice = createSlice({
       })
       .addCase(fetchTrendingMovies.fulfilled, (state, action) => {
         state.trending = action.payload;
+      })
+      .addCase(fetchGenres.fulfilled, (state, action) => {
+        state.genres = action.payload;
+      })
+      .addCase(fetchGenres.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(fetchMoviesByGenre.fulfilled, (state, action) => {
+        state.genreMovies = action.payload;
+      })
+      .addCase(fetchMoviesByGenre.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   },
 });
 export const {
     addToWatchlist,
+    setSelectedGenre,
+    clearSelectedGenre,
     removeFromWatchlist,
   } = movieSlice.actions;
   
