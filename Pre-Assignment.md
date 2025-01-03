@@ -1,49 +1,71 @@
 
-# Pre-Assignment: Second Day of React
+# Day-3 Pre-Assignment: Understanding MUI and Creating a NavBar
 
 ### Objective:
-Create a simple React component and call it in `App.js` to get familiar with React components and basic integration.
+- Understand the basics of Material UI (MUI).
+- Review the ReactMUI platform.
+- Build a simple Navigation Bar (NavBar) using MUI components.
 
 ---
 
-### Steps:
+### **Steps for Day-3 Pre-Assignment:**
 
-#### 1. **Create a Simple Component (`Greeting.js`)**
+#### 1. **Understand MUI (Material UI)**
 
-1. Create a new file called `Greeting.js` inside the `src/components` folder.
-2. Prepare the Function and Return some Statement as same as we have returned in `App.js`:
+Material UI (MUI) is a popular React UI framework that provides a set of pre-designed components to help you build modern web applications quickly.
+
+- **Install MUI** by running the following command:
+
+```bash
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+- **Learn about MUI Components**: Some common MUI components include:
+  - `AppBar`: For top navigation bars.
+  - `Toolbar`: For grouping elements in the `AppBar`.
+  - `Button`: For clickable buttons.
+  - `Typography`: For text display.
+  - `IconButton`: For clickable icons.
+  - `Box`: For layout and spacing.
+  - `InputBase`: For input fields with custom styling.
+
+---
+
+#### 2. **Review the ReactMUI Platform**
+
+- **ReactMUI** is a platform for integrating Material UI with React.
+- It provides documentation and examples of how to use Material UI components effectively.
+- You can refer to the official MUI documentation for more details: [Material UI Docs](https://mui.com/)
+
+---
+
+#### 3. **Prepare a NavBar Using MUI Components**
+
+1. **Create a new file** called `NavBar.js` in the `src/components` folder.
+2. Add the following code to `NavBar.js` to create a simple Navigation Bar:
+3. **Update `App.js`** to use the `NavBar` component:
 
 
-This component will display a greeting message when rendered.
+---
 
-#### 2. **Modify `App.js` to Call the `Greeting` Component**
+#### 4. **Running the Project:**
 
-1. Open your `src/App.js` file.
-2. Import the `Greeting` component and use it inside the `App` component:
-
-#### 3. **Running the Project:**
-
-1. After saving the files, run the project by executing the following command in the terminal:
+1. After saving the files, run the project by executing:
 
 ```bash
 npm start
 ```
 
-2. Open your browser and go to `http://localhost:3000`. You should see the message:
-
-```
-Hello, welcome to React!
-```
+2. Open your browser and go to `http://localhost:3000`. You should see a navigation bar at the top with buttons for "Home", "About", and "Contact".
 
 ---
 
 ### **Pre-Assignment Summary:**
 
-- Created a simple `Greeting` component that returns a message.
-- Imported and called the `Greeting` component inside `App.js` to display the message.
+- **Learned about Material UI (MUI)** and its components like `AppBar`, `Toolbar`, `Button`, and `Typography`.
+- **Reviewed the ReactMUI platform** to understand how to integrate MUI with React.
+- **Built a simple NavBar** using MUI components, with a title and navigation buttons.
 
 ---
 
-This is your first step towards understanding how React components work. You can now expand this by adding more components and interactivity!
-
-Let me know if you need further help.
+By completing this pre-assignment, you’ve built your first NavBar using Material UI, which is a key step in understanding how to design and style React applications using MUI.
