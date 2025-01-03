@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Container, Grid, Typography } from '@mui/material';
 import { fetchPopularMovies, fetchTrendingMovies } from '../redux/movieSlice';
+import Loading from '../components/Loading';
+import MovieCard from '../components/MovieCard';
+
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
 function Home() {
   const dispatch = useDispatch();
@@ -12,25 +17,34 @@ function Home() {
   }, [dispatch]);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loading message="Fetching movies..." />;
   }
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Popular Movies</h2>
-      <ul>
-        {popular.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
+    <Container sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Popular Movies
+      </Typography>
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+  {popular.slice(0, 6).map((movie) => (
+    <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+      <MovieCard movie={movie} />
+    </Grid>
+  ))}
+</Grid>
 
-      <h2>Trending Movies</h2>
-      <ul>
-        {trending.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
-    </div>
+
+      <Typography variant="h4" gutterBottom>
+        Trending Now
+      </Typography>
+      <Grid container spacing={3}>
+  {trending.slice(0, 6).map((movie) => (
+    <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+      <MovieCard movie={movie} />
+    </Grid>
+  ))}
+</Grid>
+    </Container>
   );
 }
 
