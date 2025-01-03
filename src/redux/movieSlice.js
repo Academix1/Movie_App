@@ -1,14 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getPopularMovies, getTrendingMovies } from '../utils/api';
 
-const initialState = {
-  placeholder: 'Redux is working!',
-};
+export const fetchPopularMovies = createAsyncThunk(
+  'movies/fetchPopular',
+  async () => {
+    const response = await getPopularMovies();
+    return response.data.results;
+  }
+);
+
+export const fetchTrendingMovies = createAsyncThunk(
+  'movies/fetchTrending',
+  async () => {
+    const response = await getTrendingMovies();
+    return response.data.results;
+  }
+);
 
 const movieSlice = createSlice({
   name: 'movies',
-  initialState,
-  reducers: {
-    // Add actions here in the future
+  initialState: {
+    popular: [],
+    trending: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPopularMovies.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchPopularMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.popular = action.payload;
+      })
+      .addCase(fetchPopularMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchTrendingMovies.fulfilled, (state, action) => {
+        state.trending = action.payload;
+      });
   },
 });
 
