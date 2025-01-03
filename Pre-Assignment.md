@@ -1,39 +1,49 @@
 
-# Pre-Assignment: First Day of React
+# Pre-Assignment: Second Day of React
 
-## 1. Checking Version of Node in Console:
-- Open your terminal or command prompt and check if **Node.js** is installed by running:
-  ```bash
-  node -v
-  ```
-- If the version is displayed (e.g., `v16.x.x`), Node.js is installed on your machine. If you get an error, proceed to the next step to install Node.js.
+### Objective:
+Create a simple React component and call it in `App.js` to get familiar with React components and basic integration.
 
-## 2. If Node.js is Not Installed, Install Node.js:
-- Visit the official Node.js website: [Node.js Download](https://nodejs.org/)
-- Download and install the **LTS** version for your operating system.
-- After installation, verify by running the following command again:
-  ```bash
-  node -v
-  ```
+---
 
-## 3. Creating a React App:
-- Once Node.js is installed, you can create a new React project using **Create React App**:
-  ```bash
-  npx create-react-app my-first-react-app
-  ```
-- This command will create a new React project called `my-first-react-app` in a folder.
+### Steps:
 
-## 4. Having an Idea about `npm install`:
-- **`npm install`** is used to install all the dependencies required for your project.
-  - After creating your React app, navigate into the project directory:
-    ```bash
-    cd my-first-react-app
-    ```
-  - You will see a `node_modules` folder which contains all the installed packages. If you ever want to install new packages, use `npm install <package-name>`.
+#### 1. **Create a Simple Component (`Greeting.js`)**
 
-## 5. Starting the React Project:
-- Now, start the React development server by running:
-  ```bash
-  npm start
-  ```
-- This will open your React app in the browser at `http://localhost:3000`.
+1. Create a new file called `Greeting.js` inside the `src/components` folder.
+2. Prepare the Function and Return some Statement as same as we have returned in `App.js`:
+
+
+This component will display a greeting message when rendered.
+
+#### 2. **Modify `App.js` to Call the `Greeting` Component**
+
+1. Open your `src/App.js` file.
+2. Import the `Greeting` component and use it inside the `App` component:
+
+#### 3. **Running the Project:**
+
+1. After saving the files, run the project by executing the following command in the terminal:
+
+```bash
+npm start
+```
+
+2. Open your browser and go to `http://localhost:3000`. You should see the message:
+
+```
+Hello, welcome to React!
+```
+
+---
+
+### **Pre-Assignment Summary:**
+
+- Created a simple `Greeting` component that returns a message.
+- Imported and called the `Greeting` component inside `App.js` to display the message.
+
+---
+
+This is your first step towards understanding how React components work. You can now expand this by adding more components and interactivity!
+
+Let me know if you need further help.
