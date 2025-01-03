@@ -10,6 +10,7 @@ import GenreDrawer from './components/GenreDrawer';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Watchlist from './pages/Watchlist';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<Search />} />
+              <Route path='/movie/:id' element={<MovieDetails />} />
               <Route path="/watchlist" element={<Watchlist />} />
             </Routes>
           </Box>
