@@ -17,6 +17,7 @@ export const searchMoviesAsync = createAsyncThunk(
     }
   );
 
+
 export const fetchTrendingMovies = createAsyncThunk(
   'movies/fetchTrending',
   async () => {
@@ -30,12 +31,21 @@ const movieSlice = createSlice({
   initialState: {
     popular: [],
     trending: [],
+    watchlist: [],
     searchResults: [],
     loading: false,
     error: null,
   },
   reducers: {
-    
+    addToWatchlist: (state, action) => {
+        state.watchlist.push(action.payload);
+      },
+      removeFromWatchlist: (state, action) => {
+        state.watchlist = state.watchlist.filter(
+          (movie) => movie.id !== action.payload.id
+        );
+        
+      },
   },
   extraReducers: (builder) => {
     builder
@@ -57,5 +67,10 @@ const movieSlice = createSlice({
         state.trending = action.payload;
       });
   },
-});  
+});
+export const {
+    addToWatchlist,
+    removeFromWatchlist,
+  } = movieSlice.actions;
+  
 export default movieSlice.reducer;
