@@ -43,6 +43,7 @@ function App() {
 
 #### **Q3a:** What is the purpose of the `React.StrictMode` wrapper in the `src/index.js` file?  
 **Answer:**  
+
 React.StrictMode is a development mode feature in React that helps identify potential problems in the application. It activates additional checks and warnings for its child components during development. It does not impact the production build or runtime behavior.
 
 #### **Q3b:** Create a root element in React 18 using ReactDOM.createRoot ?
@@ -140,16 +141,13 @@ function App() {
 #### **Q4c:** What is the purpose of the Box component in App.js?
 **Answer:**
 
-```
 The Box component is a utility component in Material-UI that provides a wrapper for layout control. It can be used for spacing, positioning, and aligning elements easily. In this case, it is used to add margin to the Home component by applying sx={{ mt: 8 }} to provide a top margin.
-```
 
 #### **Q4d:** What is the significance of the palette property in the theme.js file?
 **Answer:**
 
-```
 The palette property defines the color scheme of the application, including primary, secondary, and background colors. In this case, it sets the theme to dark mode with a custom red color for the primary palette and custom background colors for the app.
-```
+
 #### **Q4e** Modify the theme.js file to change the primary color to blue and remaining should be constant?
 
 ````js
