@@ -140,13 +140,14 @@ function App() {
 #### **Q4c:** What is the purpose of the Box component in App.js?
 **Answer:**
 
-```txt
+```
 The Box component is a utility component in Material-UI that provides a wrapper for layout control. It can be used for spacing, positioning, and aligning elements easily. In this case, it is used to add margin to the Home component by applying sx={{ mt: 8 }} to provide a top margin.
 ```
+
 #### **Q4d:** What is the significance of the palette property in the theme.js file?
 **Answer:**
 
-```txt
+```
 The palette property defines the color scheme of the application, including primary, secondary, and background colors. In this case, it sets the theme to dark mode with a custom red color for the primary palette and custom background colors for the app.
 ```
 #### **Q4e** Modify the theme.js file to change the primary color to blue and remaining should be constant?
