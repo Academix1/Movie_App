@@ -39,7 +39,33 @@ function App() {
   return <h1 style={{ textAlign: 'center', marginTop: '50px' }}>Hello World</h1>;
 }
 ```
+### **Q3: Understanding React.StrictMode**
 
+#### **Q3a:** What is the purpose of the `React.StrictMode` wrapper in the `src/index.js` file?  
+**Answer:**  
+React.StrictMode is a development mode feature in React that helps identify potential problems in the application. It activates additional checks and warnings for its child components during development. It does not impact the production build or runtime behavior.
+
+#### **Q3b:** Create a root element in React 18 using ReactDOM.createRoot ?
+**Answer:**
+
+```js
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+```
+#### Q3c: How to Render the App component inside the root element using React.StrictMode?
+**Answer:**
+```js
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+#### **Q3d:** Write the JSX code to import React and ReactDOM in a React application?
+**Answer:**
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+```
 ---
 
 ## **Day 2**
@@ -68,6 +94,10 @@ import Home from './Home';
 function App() {
   return <Home />;
 }
+```
+#### **Q3d:** What does the export default Home; statement in Home.js do?
+```txt
+This allows the Home component to be used in other files. export default makes the Home component the default export of this file, so it can be imported easily in App.js
 ```
 
 ---
@@ -107,7 +137,37 @@ function App() {
   );
 }
 ```
+#### **Q4c:** What is the purpose of the Box component in App.js?
+**Answer:**
 
+```txt
+The Box component is a utility component in Material-UI that provides a wrapper for layout control. It can be used for spacing, positioning, and aligning elements easily. In this case, it is used to add margin to the Home component by applying sx={{ mt: 8 }} to provide a top margin.
+```
+#### **Q4d:** What is the significance of the palette property in the theme.js file?
+**Answer:**
+
+```txt
+The palette property defines the color scheme of the application, including primary, secondary, and background colors. In this case, it sets the theme to dark mode with a custom red color for the primary palette and custom background colors for the app.
+```
+#### **Q4e** Modify the theme.js file to change the primary color to blue and remaining should be constant?
+
+````js
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        main: '#1976d2',  // Blue color
+      },
+      background: {
+        default: '#141414',
+        paper: '#1f1f1f',
+      },
+    },
+    typography: {
+      fontFamily: ['Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(','),
+    },
+  });
+````
 ---
 
 ### **Q5: Create a `NavBar` component.**
@@ -136,34 +196,65 @@ export default NavBar;
 <Typography variant="h6">Movie App</Typography>
 ```
 
+#### **Q5c:** What are the required installations to `install MUI` Packages ? 
+```txt
+npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+```
+
 ---
 
 ## **Day 4**
 
 ### **Q6: Set up Redux Toolkit.**
 
-#### **Q6a:** Create a Redux slice for managing state.  
+#### **Q6a:** Write the code to define an initial state for the movieSlice with a placeholder key set to "Redux is working!".
 **Answer:**
+```jsx
+const initialState = {
+  placeholder: 'Redux is working!',
+};
+```
+#### **Q6b:**  Write the code to create a slice using createSlice with the name movies and the initial state defined above ? 
 ```jsx
 import { createSlice } from '@reduxjs/toolkit';
 
 const movieSlice = createSlice({
   name: 'movies',
-  initialState: {
-    movies: [],
-  },
+  initialState,
   reducers: {
-    addMovie: (state, action) => {
-      state.movies.push(action.payload);
-    },
+    // Add actions here in the future
   },
 });
 
-export const { addMovie } = movieSlice.actions;
 export default movieSlice.reducer;
 ```
+#### **Q6c:** Write the code to configure a Redux store and include the movies slice reducer in it using configureStore ?
+**Answer:**
+```js
+import { configureStore } from '@reduxjs/toolkit';
+import movieReducer from './movieSlice';
 
-#### **Q6b:** Wrap the `App` component with Redux's `Provider`.  
+export const store = configureStore({
+  reducer: {
+    movies: movieReducer,
+  },
+});
+
+export default store;
+```
+#### **Q6d:** Write the code to use the useSelector hook to access the placeholder value from the Redux store in a component called Home?
+```js
+import { useSelector } from 'react-redux';
+
+function Home() {
+  const placeholderText = useSelector((state) => state.movies.placeholder);
+  return <h2>Home Page {placeholderText}</h2>;
+}
+
+export default Home;
+```
+
+#### **Q6e:** Wrap the `App` component with Redux's `Provider`.  
 **Answer:**
 ```jsx
 import { Provider } from 'react-redux';
@@ -179,7 +270,11 @@ function App() {
 
 export default App;
 ```
-
+#### **Q6f:** Write the command to install Redux Toolkit and React-Redux dependencies for the project?
+**Answer:**
+```
+npm install @reduxjs/toolkit react-redux
+```
 ---
 
 ## **Day 5**
@@ -209,6 +304,7 @@ function Component() {
 }
 ```
 
+
 #### **Q7c:** Manage the fetched data using `useState`.  
 **Answer:**
 ```jsx
@@ -219,7 +315,31 @@ useEffect(() => {
   });
 }, []);
 ```
-
+#### **Q7d**: Write the code to retrieve the TMDB API access token from the .env file ?
+**Answer:**
+```js
+const getAccessToken = () => process.env.REACT_APP_TMDB_ACCESS_TOKEN;
+```
+#### **Q7e**: Write the command to install axios as a dependency in your project?
+**Answer:**
+```cmd
+npm install axios
+```
+#### **Q7f**: What is the purpose of the useState hook in React?
+**Answer:**
+```txt
+The useState hook allows functional components in React to manage state. It provides a way to store and update values that change over time, such as form inputs, user interactions, or fetched data.
+```
+#### **Q7g**: How does the useState hook return values, and what are its two main elements?
+**Answer:**
+```txt
+The useState hook returns an array with two elements:
+- The state variable (current value).
+- A function to update the state variable.
+```
+```js
+const [state, setState] = useState(initialValue);
+```
 ---
 
 ## **Day 6**
@@ -249,6 +369,33 @@ useEffect(() => {
   getPopularMovies().then((response) => setMovies(response.data.results));
 }, []);
 ```
+#### **Q8c:** How would you modify the Redux slice to handle the loading, success, and error states for fetching movies?
+**Answer:**
+````js
+const movieSlice = createSlice({
+  name: 'movies',
+  initialState: {
+    popular: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPopularMovies.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchPopularMovies.fulfilled, (state, action) => {
+        state.loading = false;
+        state.popular = action.payload;
+      })
+      .addCase(fetchPopularMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
+});
+````
 
 ---
 
@@ -272,9 +419,25 @@ function Loading({ message }) {
 
 export default Loading;
 ```
-### **Day 8**
+#### **Q9b:** What component is used to display the movie poster in MovieCard and how is it styled?
+**Answer:** 
+```txt
+The CardMedia component is used to display the movie poster. It is styled with a fixed height of 300px and objectFit: 'cover' to ensure the image fills the 
+```
+#### **Q9c:** How does the MovieCard component dynamically render the movie poster based on the poster_path from the movie object?
+**Answer:**
 
+````jsx
+<CardMedia
+  component="img"
+  image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+  alt={movie.title}
+  sx={{ height: 300, objectFit: 'cover' }}
+/>
+````
 ---
+
+### **Day 8**
 
 ### **Q10: Set up React Router.**
 
@@ -416,7 +579,13 @@ const watchlist = useSelector((state) => state.movies.watchlist);
   ))}
 </Grid>
 ```
+#### **Q14c:** What is the purpose of useSelector and useDispatch hooks in React-Redux? Explain how they are used in your MovieCard and Watchlist components ?
 
+**Answer:** 
+
+```txt
+useSelector is used to access the Redux store’s state, and useDispatch is used to dispatch actions to the Redux store. In the MovieCard component, useSelector is used to check if a movie is in the watchlist, while useDispatch is used to add or remove the movie from the watchlist. In the Watchlist component, useSelector is used to fetch all movies in the watchlist and display them.
+```
 ---
 
 ### **Day 10**
@@ -466,7 +635,43 @@ export const fetchGenres = createAsyncThunk('movies/fetchGenres', async () => {
 const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 <Drawer variant={isMobile ? 'temporary' : 'permanent'}>{drawerContent}</Drawer>;
 ```
+#### **Q16b:** How would you implement a basic GenreDrawer component using Material UI?
+**Answer:**
 
+```jsx
+<Drawer>
+  <List>
+    {genres.map(genre => (
+      <ListItemButton key={genre.id}>
+        <ListItemText primary={genre.name} />
+      </ListItemButton>
+    ))}
+  </List>
+</Drawer>
+```
+#### **Q16b:** How would you make the GenreDrawer responsive based on screen size?
+**Answer:**
+
+```jsx
+const isSmallScreen = useMediaQuery('(max-width:600px)');
+<Drawer variant={isSmallScreen ? 'temporary' : 'permanent'}>
+```
+#### **Q16c:** How do you manage genre selection in the GenreDrawer?
+**Answer:**
+```jsx
+const [selectedGenre, setSelectedGenre] = useState(null);
+<ListItemButton selected={selectedGenre === genre.id} onClick={() => setSelectedGenre(genre.id)} />
+```
+#### **Q16d:** How would you implement a toggle to open and close GenreDrawer on mobile screens?
+**Answer:**
+
+```jsx
+const [open, setOpen] = useState(false);
+<IconButton onClick={() => setOpen(!open)}>
+  <MenuIcon />
+</IconButton>
+<Drawer open={open} onClose={() => setOpen(false)} />
+```
 ---
 
 ### **Day 11**
