@@ -582,9 +582,8 @@ const watchlist = useSelector((state) => state.movies.watchlist);
 
 **Answer:** 
 
-```txt
 useSelector is used to access the Redux store’s state, and useDispatch is used to dispatch actions to the Redux store. In the MovieCard component, useSelector is used to check if a movie is in the watchlist, while useDispatch is used to add or remove the movie from the watchlist. In the Watchlist component, useSelector is used to fetch all movies in the watchlist and display them.
-```
+
 ---
 
 ### **Day 10**
