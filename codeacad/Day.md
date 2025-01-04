@@ -63,9 +63,10 @@ root.render(
 ```
 #### **Q3d:** Write the JSX code to import React and ReactDOM in a React application?
 **Answer:**
+
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+- import React from 'react';
+- import ReactDOM from 'react-dom/client';
 ```
 ---
 
