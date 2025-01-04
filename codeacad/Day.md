@@ -420,9 +420,9 @@ export default Loading;
 ```
 #### **Q9b:** What component is used to display the movie poster in MovieCard and how is it styled?
 **Answer:** 
-```txt
+
 The CardMedia component is used to display the movie poster. It is styled with a fixed height of 300px and objectFit: 'cover' to ensure the image fills the 
-```
+
 #### **Q9c:** How does the MovieCard component dynamically render the movie poster based on the poster_path from the movie object?
 **Answer:**
 
