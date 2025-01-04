@@ -98,9 +98,8 @@ function App() {
 }
 ```
 #### **Q3d:** What does the export default Home; statement in Home.js do?
-```txt
+
 This allows the Home component to be used in other files. export default makes the Home component the default export of this file, so it can be imported easily in App.js
-```
 
 ---
 
