@@ -326,16 +326,16 @@ npm install axios
 ```
 #### **Q7f**: What is the purpose of the useState hook in React?
 **Answer:**
-```txt
+
 The useState hook allows functional components in React to manage state. It provides a way to store and update values that change over time, such as form inputs, user interactions, or fetched data.
-```
+
 #### **Q7g**: How does the useState hook return values, and what are its two main elements?
 **Answer:**
-```txt
+
 The useState hook returns an array with two elements:
 - The state variable (current value).
 - A function to update the state variable.
-```
+
 ```js
 const [state, setState] = useState(initialValue);
 ```
